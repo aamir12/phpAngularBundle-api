@@ -1,0 +1,13 @@
+{
+    "home":"Home",
+    "crud":"CRUD",
+    "fileUpload":"File Upload",
+    "multiFileUpload":"Multiple Files Upload",
+    "dropzone":"Dropzone",
+    "skelLoader":"Skeleton Loader",
+    "animation":"Animation",
+    "infinitScroll":"Infinite Scroll",
+    "dataTable":"Datatable",
+    "multiLanguage" : "Multiple Language"
+
+}

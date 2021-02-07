@@ -60,6 +60,9 @@ if(isset($data) && !empty($data)){
   }else
   if($action==="deleteAllEmployeeDoc"){
     deleteAllEmployeeDoc($data);
+  }else
+  if($action==="infinitScroll"){
+    infinitScroll($data);
   }else{
     errorHandler('Unknown Request',INV_REQ);
   }
@@ -236,5 +239,20 @@ function deleteAllEmployeeDoc($data){
     errorHandler('No data found',NOT_FOUND,404);
   }
 }
+
+function infinitScroll($data){
+  $str = file_get_contents('blogs.json');
+  $json = json_decode($str, true);
+  $total = count($json);
+  $start = 0;
+  $per_page = isset($data['limit'])?$data['limit']:9;
+  if(isset($data['start'])){
+     $start = $data['start'];
+  }
+  $data = array_slice($json, $start, $per_page); 
+  responseHandler('success',$data);
+}
+
+
 
 ?>

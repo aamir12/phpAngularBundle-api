@@ -54,7 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
         case 'addProfile':
             addProfile($_REQUEST);
             break;
-
+        case 'multifiledropzone':
+            multifiledropzone($_REQUEST);
+            break;
         case 'sample':            
             sample($_REQUEST);
             break;
@@ -325,7 +327,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
      
    function addProfile1($data){
-       
         unset($data['action']);
         $filename = 'default.jpg';
         $imageName = $_FILES["image"]["name"];
@@ -360,6 +361,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
         }else{
             errorHandler('Server Error');
         }
+    }
+
+    function multifiledropzone($data){
+        unset($data['action']);
+        ////////////////////////
+        $total = count($_FILES['image']['name']);
+        $filesNames = [];
+        for( $i=0 ; $i < $total ; $i++ ) {
+        $imageName = $_FILES['image']['name'][$i];
+            if(!empty($imageName)) {
+                $fileExtension = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
+                $fileAllow = array("jpg","jpeg","png","gif");
+                if(in_array($fileExtension,$fileAllow) && $_FILES["image"]["size"][$i] < 3000000){
+                    $strDtMix = @date("d").substr((string)microtime(), 2, 8);
+                    $filename = $strDtMix.".".pathinfo($imageName, PATHINFO_EXTENSION);
+                    array_push($filesNames,$filename);
+                    move_uploaded_file($_FILES['image']['tmp_name'][$i], "uploads/dropzone/".$filename);
+                }
+            }
+        }
+        ///////////////////////
+        responseHandler('success',$filesNames);
     }
     
   
