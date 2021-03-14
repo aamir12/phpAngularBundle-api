@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <meta
-      name="google-signin-client_id"
+    <meta name="google-signin-client_id
       content="43829369774-pbtautnm3t9b05s5d2bi6ilel0uq8rsv.apps.googleusercontent.com"
     />
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -18,7 +17,9 @@
 <div id="my-signin2"></div>
 <button onclick="verify()">Verify Request</button>
 <script>
-let data = {}
+let data = {
+	name:'sample'
+}
 function onSuccess(googleUser) {
   var profile = googleUser.getBasicProfile();
   data = {
