@@ -7,7 +7,7 @@
 
 <p>Today's welcome message is:</p>
 
-  <button ng-click="sendData()"></button>
+  <button ng-click="sendData()">Send Request</button>
 
 </div>
 
