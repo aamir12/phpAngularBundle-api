@@ -9,6 +9,8 @@
 
   <button ng-click="sendData()">Send Request</button>
 
+  <button ng-click="verifyRequuest()">Verify Request</button>
+
 </div>
 
 <script>
@@ -17,11 +19,23 @@ app.controller('myCtrl', function($scope, $http) {
   
 	$scope.sendData = function(){
 		$http({
-			method: 'GET',
-			url: 'api.php',
-			data:{name:'test',action:'sample'}
+			method: 'POST',
+			url: 'googleLogin.php?action=request',
+			data:{name:'request'}
 		}).then(function (response) {
-		   console.log(response);
+		   console.log(response.data);
+		}, function (error) {
+		    console.log(error);
+		});
+	}
+
+	$scope.verifyRequuest  = function(){
+		$http({
+			method: 'POST',
+			url: 'googleLogin.php?action=verify',
+			data:{name:'verify'}
+		}).then(function (response) {
+		   console.log(response.data);
 		}, function (error) {
 		    console.log(error);
 		});
