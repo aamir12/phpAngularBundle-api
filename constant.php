@@ -1,7 +1,7 @@
 <?php
     date_default_timezone_set('Asia/Calcutta');  
     define('BASE_DIR', dirname(__FILE__));
-    define("MODE","Production"); //Production
+    define("MODE","Development"); //Production
 
     if(MODE==="Development"){
         define("MAIN_URL","http://localhost/myrestapi/");
