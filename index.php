@@ -23,12 +23,14 @@ let data = {
 }
 function onSuccess(googleUser) {
   var profile = googleUser.getBasicProfile();
+  var id_token = googleUser.getAuthResponse().id_token;
   data = {
   	id:profile.getId(),
   	name: profile.getName(),
   	photo: profile.getImageUrl(),
   	email : profile.getEmail(),
-  	action:'request'
+  	action:'request',
+  	id_token:id_token
   }
   console.log(data);
   //call ajax;
