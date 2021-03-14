@@ -18,7 +18,8 @@
 <button onclick="verify()">Verify Request</button>
 <script>
 let data = {
-	name:'sample'
+	name:'sample',
+	action:'verify'
 }
 function onSuccess(googleUser) {
   var profile = googleUser.getBasicProfile();
@@ -26,12 +27,13 @@ function onSuccess(googleUser) {
   	id:profile.getId(),
   	name: profile.getName(),
   	photo: profile.getImageUrl(),
-  	email : profile.getEmail()
+  	email : profile.getEmail(),
+  	action:'request'
   }
   console.log(data);
   //call ajax;
 	  $.ajax({
-        url: 'googleLogin.php?action=request',
+        url: 'googleLogin.php',
         data: data,
         type: "POST",
         success: function (res, status) {
@@ -62,6 +64,7 @@ function renderButton() {
 }
 
 function verify(){
+	console.log(data);
     $.ajax({
         url: 'googleLogin.php?action=verify',
         data: data,
